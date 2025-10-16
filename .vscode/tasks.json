@@ -11,6 +11,33 @@
         "isDefault": true
       },
       "label": "tsc: watch"
+    },
+    {
+      "type": "npm",
+      "script": "dev",
+      "path": "app",
+      "problemMatcher": {
+        "owner": "vite",
+        "fileLocation": ["relative", "${workspaceFolder}/app"],
+        "pattern": [
+          {
+            "regexp": "^(.+):(\\d+):(\\d+):\\s+(error|warning):\\s+(.+)$",
+            "file": 1,
+            "line": 2,
+            "column": 3,
+            "severity": 4,
+            "message": 5
+          }
+        ],
+        "background": {
+          "activeOnStart": true,
+          "beginsPattern": "^.*VITE.*$",
+          "endsPattern": "^.*Local.*$"
+        }
+      },
+      "label": "npm: dev - app",
+      "detail": "vite",
+      "isBackground": true
     }
   ]
 }

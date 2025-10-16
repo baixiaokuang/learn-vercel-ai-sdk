@@ -5,7 +5,15 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "name": "Launch Program",
+      "name": "Launch Chrome",
+      "request": "launch",
+      "type": "chrome",
+      "url": "http://localhost:5173",
+      "webRoot": "${workspaceFolder}/app",
+      "preLaunchTask": "npm: dev - app"
+    },
+    {
+      "name": "Launch Backend",
       "program": "${workspaceFolder}/api/dist/main.js",
       "request": "launch",
       "skipFiles": ["<node_internals>/**"],
@@ -16,11 +24,10 @@
     {
       "type": "node",
       "request": "launch",
-      "name": "Run tsx",
+      "name": "Launch Backend TSX",
       "runtimeExecutable": "${workspaceFolder}/node_modules/.bin/tsx",
       "cwd": "${workspaceFolder}/api",
-      "args": ["main.ts"],
-      "console": "integratedTerminal"
+      "args": ["main.ts"]
     }
   ]
 }
