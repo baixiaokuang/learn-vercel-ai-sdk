@@ -8,7 +8,7 @@ function App() {
   const [message, setMessage] = useState("");
   const { messages, sendMessage } = useChat({
     transport: new DefaultChatTransport({
-      api: "/api",
+      api: "http://localhost:3000/api",
     }),
   });
   return (
