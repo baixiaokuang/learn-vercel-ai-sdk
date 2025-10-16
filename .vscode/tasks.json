@@ -38,6 +38,33 @@
       "label": "npm: dev - app",
       "detail": "vite",
       "isBackground": true
+    },
+    {
+      "type": "npm",
+      "script": "start",
+      "path": "api",
+      "problemMatcher": {
+        "owner": "npm",
+        // "fileLocation": ["relative", "${workspaceFolder}/app"],
+        "pattern": [
+          {
+            "regexp": "^(.+):(\\d+):(\\d+):\\s+(error|warning):\\s+(.+)$",
+            "file": 1,
+            "line": 2,
+            "column": 3,
+            "severity": 4,
+            "message": 5
+          }
+        ],
+        "background": {
+          "activeOnStart": true,
+          "beginsPattern": "^Listening on port.*$",
+          "endsPattern": "^Listening on port.*$"
+        }
+      },
+      "label": "npm: start - api",
+      "detail": "node --watch ./dist/main.js",
+      "isBackground": true
     }
   ]
 }
