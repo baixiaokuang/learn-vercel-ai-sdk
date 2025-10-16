@@ -10,7 +10,8 @@
       "request": "launch",
       "skipFiles": ["<node_internals>/**"],
       "type": "node",
-      "preLaunchTask": "tsc: watch"
+      "preLaunchTask": "tsc: watch",
+      "cwd": "${workspaceFolder}/api"
     },
     {
       "type": "node",
