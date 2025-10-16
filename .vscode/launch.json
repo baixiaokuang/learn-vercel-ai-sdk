@@ -5,12 +5,20 @@
   "version": "0.2.0",
   "configurations": [
     {
+      "name": "Launch Program",
+      "program": "${workspaceFolder}/api/dist/main.js",
+      "request": "launch",
+      "skipFiles": ["<node_internals>/**"],
+      "type": "node",
+      "preLaunchTask": "tsc: watch"
+    },
+    {
       "type": "node",
       "request": "launch",
       "name": "Run tsx",
-      "runtimeExecutable": "tsx",
-      "cwd": "${workspaceFolder}",
-      "args": ["./main.ts"],
+      "runtimeExecutable": "${workspaceFolder}/node_modules/.bin/tsx",
+      "cwd": "${workspaceFolder}/api",
+      "args": ["main.ts"],
       "console": "integratedTerminal"
     }
   ]
