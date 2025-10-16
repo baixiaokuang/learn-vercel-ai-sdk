@@ -1,35 +1,44 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useState } from "react";
+import { useChat } from "@ai-sdk/react";
+import "./App.css";
+import { DefaultChatTransport } from "ai";
 
 function App() {
-  const [count, setCount] = useState(0)
-
+  // const [messages, setMessages] = useState(["HelloWorld"]);
+  const [message, setMessage] = useState("");
+  const { messages, sendMessage } = useChat({
+    transport: new DefaultChatTransport({
+      api: "/api",
+    }),
+  });
   return (
     <>
       <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+        {messages.map((item, i) => (
+          <div key={i}>
+            {item.role === "user" ? "User: " : "Assistant: "}
+            {item.parts.map((part, i) => {
+              if (part.type === "text") return <p key={i}>{part.text}</p>;
+            })}
+          </div>
+        ))}
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      <form
+        onSubmit={(e) => {
+          e.preventDefault();
+          sendMessage({ text: message });
+          setMessage("");
+        }}
+      >
+        <input
+          placeholder="Input your prompt"
+          value={message}
+          onChange={(e) => {
+            setMessage(e.currentTarget.value);
+          }}
+        ></input>
+      </form>
     </>
-  )
+  );
 }
-
-export default App
+export default App;
